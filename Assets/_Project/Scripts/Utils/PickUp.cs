@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    private PlayerInventory inventory;
+    [SerializeField] private PlayerInventory inventory;
+
+    private void Awake()
+    {
+        if (inventory == null)
+            inventory = GetComponent<PlayerInventory>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
