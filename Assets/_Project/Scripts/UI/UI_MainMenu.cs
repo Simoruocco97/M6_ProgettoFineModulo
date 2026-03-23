@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UI_ButtonManager : MonoBehaviour
+public class UI_MainMenu : MonoBehaviour
 {
     [SerializeField] private int MainLevelSceneInt = 1;
 

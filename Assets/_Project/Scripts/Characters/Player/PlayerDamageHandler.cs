@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerDamageHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject gameoverUI;
-    [SerializeField] private float deathDelay = 3f;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Collider2D col;
+    [SerializeField] private UnityEvent onDeath;
 
     private void Awake()
     {
@@ -29,22 +29,7 @@ public class PlayerDamageHandler : MonoBehaviour
             AudioManager.Instance.PlaySFXSound("GameoverSound");
 
         DisablePlayer();
-
-        StartCoroutine(DeathSequence());
-    }
-
-    private IEnumerator DeathSequence()
-    {
-        yield return new WaitForSecondsRealtime(deathDelay);
-        ShowGameoverUI();
-    }
-
-    private void ShowGameoverUI()
-    {
-        if (gameoverUI != null)
-            gameoverUI.SetActive(true);
-
-        Time.timeScale = 0f;
+        onDeath?.Invoke();
     }
 
     private void DisablePlayer()

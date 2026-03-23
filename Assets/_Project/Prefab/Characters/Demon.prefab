@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 3997937322085300298, guid: 4d537220a2a2c0442834113933c0530f, type: 3}
-  dropChance: 30
+  dropChance: 40
   dropCircle: 0.8
 --- !u!114 &4616396977868203587
 MonoBehaviour:
