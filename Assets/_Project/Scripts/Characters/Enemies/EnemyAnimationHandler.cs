@@ -9,4 +9,12 @@ public class EnemiesAnimationHandler : AnimationManager
 
         animator.SetBool("isMoving", dir != Vector2.zero);
     }
+
+    public void ResetAnimation()
+    {
+        animator.SetFloat(verticalSpeedName, 0f);
+        animator.SetFloat(horizontalSpeedName, 0f);
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isDead", false);
+    }
 }

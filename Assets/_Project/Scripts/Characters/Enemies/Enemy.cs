@@ -1,32 +1,41 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Components")]
+    [SerializeField] private LifeController life;
+    [SerializeField] private EnemiesAnimationHandler anim;
+    [SerializeField] private Rigidbody2D rb;
+
+    [Header("Pools")]
+    private ObjectPool<Enemy> pool;
+
+    [Header("Player Infos")]
+    [SerializeField] private Transform playerTransform;
+
     [SerializeField] private int enemyDmg = 1;
     [SerializeField] private float speed = 2f;
 
-    private LifeController life;
-    private EnemiesAnimationHandler anim;
-    private Transform playerTransform;
-    private Rigidbody2D rb;
-
     private void Awake()
     {
-        life = GetComponent<LifeController>();
-        anim = GetComponentInChildren<EnemiesAnimationHandler>();
-        rb = GetComponent<Rigidbody2D>();
-    }
+        if (life == null)
+            life = GetComponent<LifeController>();
 
-    private void Start()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-            playerTransform = player.transform;
+        if (anim == null)
+            anim = GetComponentInChildren<EnemiesAnimationHandler>();
+
+        if (rb == null)
+            rb = GetComponent<Rigidbody2D>();
+
+        if (playerTransform == null)
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void FixedUpdate()
     {
-        if (playerTransform == null || !life.IsAlive()) return;
+        if (playerTransform == null || !life.IsAlive())
+            return;
 
         Vector2 direction = (playerTransform.position - transform.position).normalized;
 
@@ -39,14 +48,23 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
 
         if (collision.gameObject.TryGetComponent<LifeController>(out var playerLife))
-        {
             playerLife.TakeDamage(enemyDmg);
-        }
 
         if (life != null)
             life.Suicide();
+    }
+
+    public void SetPool(ObjectPool<Enemy> pool)
+    {
+        this.pool = pool;
+    }
+
+    public void ReturnToPool()
+    {
+        pool?.Release(this);
     }
 }

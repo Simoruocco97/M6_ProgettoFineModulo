@@ -258,6 +258,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UI_Lifebar, Assembly-CSharp
+        m_MethodName: UpdateLifebar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -285,10 +297,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9420a5288df08004babe62d1bd3b46d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameoverUI: {fileID: 0}
-  deathDelay: 3
   playerController: {fileID: 1628254169739049913}
   col: {fileID: 2398836989353204018}
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UI_Gameover, Assembly-CSharp
+        m_MethodName: StartDeathCoroutine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6259922915574513312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +356,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa906859d436b14995b627985a68344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UI_Coin, Assembly-CSharp
+        m_MethodName: UpdateCoin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7093589652969392459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,16 +383,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56579782550fd734dae9944da016336f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  life: {fileID: 4374236433010651739}
+  bulletPools:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fireRate: 2
-  bulletPrefabs:
-  - {fileID: 5309871388517539975, guid: 8cad16560933fc046aacc77ebe3da4dc, type: 3}
-  - {fileID: 5309871388517539975, guid: 68d6918592f06674794247058552399e, type: 3}
-  - {fileID: 5309871388517539975, guid: 3deb6d00553f6f8499e9cc4fe4e8d5fa, type: 3}
-  - {fileID: 5309871388517539975, guid: 586bca2fd3c3a534ca94b0d3523e951c, type: 3}
-  - {fileID: 5309871388517539975, guid: e2cb566ffa21ff54f9fc0a4d9cf2237b, type: 3}
-  - {fileID: 5309871388517539975, guid: e55d974dac743bd49969582a93528ab2, type: 3}
-  - {fileID: 5309871388517539975, guid: 487573443c2cb8f4ba34e11b8c5a6217, type: 3}
+  damage: 50
 --- !u!114 &405388946838296687
 MonoBehaviour:
   m_ObjectHideFlags: 0

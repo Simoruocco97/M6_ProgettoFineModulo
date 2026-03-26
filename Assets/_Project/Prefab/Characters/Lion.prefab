@@ -189,6 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe2751799c1f0c4381228a96699d538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: {fileID: 0}
+  anim: {fileID: 0}
+  rb: {fileID: 0}
+  playerTransform: {fileID: 0}
   enemyDmg: 15
   speed: 2
 --- !u!114 &4665211372102772924
@@ -204,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 3997937322085300298, guid: 4d537220a2a2c0442834113933c0530f, type: 3}
-  dropChance: 50
+  dropChance: 60
   dropCircle: 0.8
 --- !u!114 &4616396977868203587
 MonoBehaviour:
@@ -220,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flash: {fileID: 0}
   animator: {fileID: 0}
-  maxHealth: 100
+  maxHealth: 150
   minHealth: 0
   fullHpOnStart: 1
   onHpChange:

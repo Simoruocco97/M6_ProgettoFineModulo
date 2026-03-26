@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemyDamageHandler : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class EnemyDamageHandler : MonoBehaviour
     [SerializeField] private Collider2D col;
     [SerializeField] private EnemyDrop drop;
     [SerializeField] private float deathDelay = 2f;
+    private ObjectPool<Enemy> pool;
 
     private void Awake()
     {
@@ -14,7 +16,7 @@ public class EnemyDamageHandler : MonoBehaviour
 
         if (col == null)
             col = GetComponent<Collider2D>();
-        
+
         if (drop == null)
             drop = GetComponent<EnemyDrop>();
     }
@@ -33,14 +35,32 @@ public class EnemyDamageHandler : MonoBehaviour
         drop.TryDrop();
 
         DisableEnemy();
-        Destroy(gameObject, deathDelay);
+
+        if (pool != null)
+            Invoke(nameof(ReturnToPool), deathDelay);
+        else
+            Destroy(gameObject, deathDelay);
     }
 
     private void DisableEnemy()
     {
-        if (col == null)
-            return;
+        if (col != null)
+            col.enabled = false;
 
-        col.enabled = false;
+        if (TryGetComponent<Rigidbody2D>(out var rb))
+            rb.velocity = Vector2.zero;
+    }
+
+    public void SetPool(ObjectPool<Enemy> pool)
+    {
+        this.pool = pool;
+    }
+
+    private void ReturnToPool()
+    {
+        if (TryGetComponent<Enemy>(out var enemy))
+        {
+            enemy.ReturnToPool();
+        }
     }
 }

@@ -71,4 +71,10 @@ public class LifeController : MonoBehaviour
     {
         TakeDamage(maxHealth);
     }
+
+    public void ResetHealth()
+    {
+        isDead = false;
+        SetHp(maxHealth);
+    }
 }

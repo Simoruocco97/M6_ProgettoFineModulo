@@ -2,30 +2,29 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemies;
+    [Header("Pools")]
+    [SerializeField] private EnemyPoolSystem[] enemyPools;
+
+    [Header("Spawn Infos")]
     [SerializeField] private float spawnTimer = 10f;
-    private float saveTimer;
-
-    private void Awake()
-    {
-        saveTimer = spawnTimer;
-        spawnTimer = 0f;
-    }
-
-    private GameObject ChooseEnemy()
-    {
-        int randomIndex = Random.Range(0, enemies.Length);        //scelta casuale del tipo di enemy
-        GameObject selectedEnemy = enemies[randomIndex];
-        return selectedEnemy;
-    }
+    private float timer = 0f;
 
     private void Update()
     {
-        spawnTimer -= Time.deltaTime;
-        if (spawnTimer <= 0) 
+        timer -= Time.deltaTime;
+        if (timer <= 0) 
         {
-            Instantiate(ChooseEnemy(), transform.position, Quaternion.identity);
-            spawnTimer = saveTimer;
+            SpawnEnemy();
+            timer = spawnTimer;
         }
+    }
+
+    private void SpawnEnemy()
+    {
+        if (enemyPools.Length == 0)
+            return;
+
+        int randomIndex = Random.Range(0, enemyPools.Length);
+        enemyPools[randomIndex].SpawnEnemy(transform.position);
     }
 }
