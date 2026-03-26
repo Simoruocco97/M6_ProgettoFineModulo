@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Spawn Infos")]
     [SerializeField] private float spawnTimer = 10f;
+    [SerializeField] private Transform[] spawnPoint;
     private float timer = 0f;
 
     private void Update()
@@ -19,12 +20,21 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public float GetSpawnTime() => spawnTimer;
+
+    public void SetSpawnTime(float newTimer)
+    {
+        spawnTimer = newTimer;
+        timer = Mathf.Min(timer, newTimer);
+    }
+
     private void SpawnEnemy()
     {
-        if (enemyPools.Length == 0)
+        if (enemyPools.Length == 0 || spawnPoint.Length == 0)
             return;
 
-        int randomIndex = Random.Range(0, enemyPools.Length);
-        enemyPools[randomIndex].SpawnEnemy(transform.position);
+        int randomEnemy = Random.Range(0, enemyPools.Length);
+        int randomSpawner = Random.Range(0, spawnPoint.Length);
+        enemyPools[randomEnemy].SpawnEnemy(spawnPoint[randomSpawner].position);
     }
 }

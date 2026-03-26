@@ -28,6 +28,13 @@ public class ShootingSystem : MonoBehaviour
         Shoot();
     }
 
+    public float GetFireRate() => fireRate;
+
+    public void SetFireRate(float newFireRate)
+    {
+        fireRate = Mathf.Min(fireRate, newFireRate);
+    }
+
     private void Shoot()
     {
         if (bulletPools.Length == 0)

@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PickUp : MonoBehaviour
 {
     [SerializeField] private PlayerInventory inventory;
+    [SerializeField] private UnityEvent onPickup;
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class PickUp : MonoBehaviour
         {
             inventory = collision.GetComponent<PlayerInventory>();
             inventory.AddCoin(1);
+            onPickup.Invoke();
 
             if (AudioManager.Instance != null)
                 AudioManager.Instance.PlaySFXSound("CoinPickup");
