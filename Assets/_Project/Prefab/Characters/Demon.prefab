@@ -193,7 +193,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   rb: {fileID: 0}
   playerTransform: {fileID: 0}
-  enemyDmg: 100
+  enemyDmg: 40
   speed: 3
 --- !u!114 &4665211372102772924
 MonoBehaviour:
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 3997937322085300298, guid: 4d537220a2a2c0442834113933c0530f, type: 3}
-  dropChance: 40
+  dropChance: 70
   dropCircle: 0.8
 --- !u!114 &4616396977868203587
 MonoBehaviour:
@@ -287,6 +287,7 @@ MonoBehaviour:
   col: {fileID: 5691682764085412991}
   drop: {fileID: 0}
   deathDelay: 2
+  enemy: {fileID: 0}
 --- !u!114 &5340424819699384248
 MonoBehaviour:
   m_ObjectHideFlags: 0

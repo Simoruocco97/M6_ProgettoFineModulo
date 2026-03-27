@@ -7,6 +7,7 @@ public class EnemyDamageHandler : MonoBehaviour
     [SerializeField] private Collider2D col;
     [SerializeField] private EnemyDrop drop;
     [SerializeField] private float deathDelay = 2f;
+    [SerializeField] private Enemy enemy;
     private ObjectPool<Enemy> pool;
 
     private void Awake()
@@ -19,6 +20,9 @@ public class EnemyDamageHandler : MonoBehaviour
 
         if (drop == null)
             drop = GetComponent<EnemyDrop>();
+
+        if (enemy == null)
+            enemy = GetComponent<Enemy>();
     }
 
     public void HandleDamage()
@@ -58,9 +62,6 @@ public class EnemyDamageHandler : MonoBehaviour
 
     private void ReturnToPool()
     {
-        if (TryGetComponent<Enemy>(out var enemy))
-        {
-            enemy.ReturnToPool();
-        }
+        pool?.Release(enemy);
     }
 }

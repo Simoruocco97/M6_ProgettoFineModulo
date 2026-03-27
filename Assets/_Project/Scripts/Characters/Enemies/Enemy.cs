@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,9 +6,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LifeController life;
     [SerializeField] private EnemiesAnimationHandler anim;
     [SerializeField] private Rigidbody2D rb;
-
-    [Header("Pools")]
-    private ObjectPool<Enemy> pool;
 
     [Header("Player Infos")]
     [SerializeField] private Transform playerTransform;
@@ -58,13 +54,15 @@ public class Enemy : MonoBehaviour
             life.Suicide();
     }
 
-    public void SetPool(ObjectPool<Enemy> pool)
+    private void OnEnable()
     {
-        this.pool = pool;
+        if (EnemyManager.Instance != null)
+            EnemyManager.Instance.ListEnemy(transform);
     }
 
-    public void ReturnToPool()
+    private void OnDisable()
     {
-        pool?.Release(this);
+        if (EnemyManager.Instance != null)
+            EnemyManager.Instance.UnlistEnemy(transform);
     }
 }

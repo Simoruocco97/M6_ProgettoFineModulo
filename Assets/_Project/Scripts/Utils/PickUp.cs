@@ -4,12 +4,15 @@ using UnityEngine.Events;
 public class PickUp : MonoBehaviour
 {
     [SerializeField] private PlayerInventory inventory;
-    [SerializeField] private UnityEvent onPickup;
+    [SerializeField] private GameManager gameManager;
 
     private void Awake()
     {
         if (inventory == null)
             inventory = GetComponent<PlayerInventory>();
+
+        if (gameManager == null)
+            gameManager = FindAnyObjectByType<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,7 +21,7 @@ public class PickUp : MonoBehaviour
         {
             inventory = collision.GetComponent<PlayerInventory>();
             inventory.AddCoin(1);
-            onPickup.Invoke();
+            gameManager?.DifficultyChange();
 
             if (AudioManager.Instance != null)
                 AudioManager.Instance.PlaySFXSound("CoinPickup");

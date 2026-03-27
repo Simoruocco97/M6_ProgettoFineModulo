@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
         if (coins >= startDifficultyIndex)
         {
+            Debug.Log("Difficolta' aumentata");
+
             float spawnTime = enemySpawner.GetSpawnTime();
             float fireRate = shooting.GetFireRate();
 

@@ -70,7 +70,6 @@ public class Bullet : MonoBehaviour
             return;
 
         isActive = false;
-
         target = null;
         rb.velocity = Vector2.zero;
 

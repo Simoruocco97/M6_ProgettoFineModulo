@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemyPoolSystem[] enemyPools;
 
     [Header("Spawn Infos")]
-    [SerializeField] private float spawnTimer = 10f;
+    [SerializeField] private float spawnTimer = 8f;
     [SerializeField] private Transform[] spawnPoint;
     private float timer = 0f;
 

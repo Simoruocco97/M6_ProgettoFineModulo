@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+
 public class ShootingSystem : MonoBehaviour
 {
     [Header("Components")]
@@ -8,6 +10,7 @@ public class ShootingSystem : MonoBehaviour
     [SerializeField] private BulletPoolSystem[] bulletPools;
 
     [Header("Shooting Info")]
+    [SerializeField] private float shootingRange = 10f;
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private int damage = 1;
     private float lastFireTime;
@@ -57,12 +60,13 @@ public class ShootingSystem : MonoBehaviour
 
     private Transform FindNearestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
         Transform nearest = null;
         float nearestDist = float.MaxValue;
 
-        foreach (GameObject enemy in enemies)
+        if (EnemyManager.Instance == null)
+            return nearest;
+
+        foreach (Transform enemy in EnemyManager.Instance.GetListedEnemies())
         {
             if (enemy == null) continue;
 
@@ -72,11 +76,14 @@ public class ShootingSystem : MonoBehaviour
                     continue;
             }
 
-            float dist = (enemy.transform.position - transform.position).sqrMagnitude;
+            float dist = (enemy.position - transform.position).sqrMagnitude;
+            if (dist > shootingRange * shootingRange)
+                continue;
+
             if (dist < nearestDist)
             {
                 nearestDist = dist;
-                nearest = enemy.transform;
+                nearest = enemy;
             }
         }
         return nearest;
