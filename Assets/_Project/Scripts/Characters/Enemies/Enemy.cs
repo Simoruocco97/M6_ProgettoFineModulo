@@ -3,7 +3,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private LifeController life;
+    [SerializeField] private LifeController enemyLife;
+    [SerializeField] private LifeController playerLife;
     [SerializeField] private EnemiesAnimationHandler anim;
     [SerializeField] private Rigidbody2D rb;
 
@@ -15,8 +16,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        if (life == null)
-            life = GetComponent<LifeController>();
+        if (enemyLife == null)
+            enemyLife = GetComponent<LifeController>();
 
         if (anim == null)
             anim = GetComponentInChildren<EnemiesAnimationHandler>();
@@ -24,13 +25,23 @@ public class Enemy : MonoBehaviour
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
 
-        if (playerTransform == null)
-            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            if (playerLife == null)
+                playerLife = player.GetComponent<LifeController>();
+
+            if (playerTransform == null)
+                playerTransform = player.transform;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (playerTransform == null || !life.IsAlive())
+        if (playerTransform == null || !enemyLife.IsAlive())
+            return;
+
+        if (!playerLife.IsAlive())
             return;
 
         Vector2 direction = (playerTransform.position - transform.position).normalized;
@@ -50,8 +61,8 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.TryGetComponent<LifeController>(out var playerLife))
             playerLife.TakeDamage(enemyDmg);
 
-        if (life != null)
-            life.Suicide();
+        if (enemyLife != null)
+            enemyLife.Suicide();
     }
 
     private void OnEnable()

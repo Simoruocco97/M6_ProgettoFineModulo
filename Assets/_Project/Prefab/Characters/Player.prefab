@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 4003088242838981126}
   - component: {fileID: 2398836989353204018}
   - component: {fileID: 683871842627370178}
+  - component: {fileID: 8870278954726317431}
   - component: {fileID: 1628254169739049913}
   - component: {fileID: 4374236433010651739}
   - component: {fileID: 1399634960241959207}
@@ -210,6 +211,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8870278954726317431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133359605419419512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9203f7dc3e4b0dc489ac1d8c72065db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1628254169739049913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,10 +235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275d8f0e96596254d80042e4c7d22abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: {fileID: 0}
-  animator: {fileID: 0}
-  rb: {fileID: 0}
-  speed: 5
+  animator: {fileID: -7953212163369348816}
+  inputManager: {fileID: 0}
+  life: {fileID: 4374236433010651739}
+  rb: {fileID: 683871842627370178}
+  speed: 4.5
 --- !u!114 &4374236433010651739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,8 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d304eb2b06236784480508a922bf1227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flash: {fileID: 0}
-  animator: {fileID: 5426025579674409232}
+  flash: {fileID: 405388946838296687}
+  animator: {fileID: 6259922915574513312}
   maxHealth: 100
   minHealth: 0
   fullHpOnStart: 1
@@ -341,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd8670ffaef57748ba621613c263c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 5426025579674409232}
   verticalSpeedName: vSpeed
   horizontalSpeedName: hSpeed
 --- !u!114 &9137546758810232439
@@ -392,6 +406,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  shootingRange: 8
   fireRate: 2
   damage: 50
 --- !u!114 &405388946838296687
@@ -407,4 +422,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.25
-  sprite: {fileID: 0}
+  sprite: {fileID: 5380899599518005134}

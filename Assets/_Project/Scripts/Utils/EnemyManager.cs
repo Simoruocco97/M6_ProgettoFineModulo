@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance { get; private set; }
+
     private List<Transform> foundEnemies = new List<Transform>();
 
     private void Awake()
