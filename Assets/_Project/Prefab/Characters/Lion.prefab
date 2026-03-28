@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4042869361006505611}
   - component: {fileID: 1692066446287726457}
   - component: {fileID: 5059055174818564868}
+  - component: {fileID: -7168272353907802569}
   m_Layer: 7
   m_Name: Lion
   m_TagString: Enemy
@@ -189,8 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe2751799c1f0c4381228a96699d538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: {fileID: 0}
+  enemyLife: {fileID: 0}
+  playerLife: {fileID: 0}
   anim: {fileID: 0}
+  path: {fileID: 0}
   rb: {fileID: 0}
   playerTransform: {fileID: 0}
   enemyDmg: 20
@@ -318,3 +321,21 @@ MonoBehaviour:
   drop: {fileID: 0}
   deathDelay: 2
   enemy: {fileID: 0}
+--- !u!114 &-7168272353907802569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7221795529696199979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf280c905e1297498802e4dd62bc2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8628592235760076382}
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 2048
+  raycastDistance: 1.5
+  raycastAngle: 60

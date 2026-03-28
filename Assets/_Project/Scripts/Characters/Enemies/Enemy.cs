@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LifeController enemyLife;
     [SerializeField] private LifeController playerLife;
     [SerializeField] private EnemiesAnimationHandler anim;
+    [SerializeField] private PathFinding path;
     [SerializeField] private Rigidbody2D rb;
 
     [Header("Player Infos")]
@@ -16,6 +17,9 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        if (path == null)
+            path = GetComponent<PathFinding>();
+
         if (enemyLife == null)
             enemyLife = GetComponent<LifeController>();
 
@@ -45,6 +49,8 @@ public class Enemy : MonoBehaviour
             return;
 
         Vector2 direction = (playerTransform.position - transform.position).normalized;
+        if (path != null)
+            direction = path.GetPath(direction);
 
         if (rb != null)
             rb.MovePosition(rb.position + direction * (speed * Time.fixedDeltaTime));

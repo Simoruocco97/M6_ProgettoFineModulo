@@ -1862,7 +1862,7 @@ GameObject:
   - component: {fileID: 202073597}
   - component: {fileID: 202073596}
   - component: {fileID: 202073598}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: objects w collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12501,7 +12501,7 @@ GameObject:
   - component: {fileID: 795275459}
   - component: {fileID: 795275458}
   - component: {fileID: 795275457}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: objects w collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
