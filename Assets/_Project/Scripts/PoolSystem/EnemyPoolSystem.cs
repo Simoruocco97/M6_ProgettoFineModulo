@@ -4,7 +4,7 @@ public class EnemyPoolSystem : PoolSystem<Enemy>
 {
     protected override Enemy Create()
     {
-        Enemy enemy = Instantiate(prefab);
+        Enemy enemy = Instantiate(prefab, transform);
         enemy.GetComponent<EnemyDamageHandler>()?.SetPool(pool);
         return enemy;
     }

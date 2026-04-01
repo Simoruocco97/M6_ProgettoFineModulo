@@ -4,7 +4,7 @@ public class BulletPoolSystem : PoolSystem<Bullet>
 {
     protected override Bullet Create()
     {
-        Bullet bullet = Instantiate(prefab);
+        Bullet bullet = Instantiate(prefab, transform);
         bullet.SetPool(pool);
         return bullet;
     }
